@@ -15,7 +15,7 @@ port = os.getenv("DB_PORT")
 
 @app.get("/")
 async def root():
-    connection = get_db_connection()
+    connection = check_mysql_connection()
     '''cursor = connection.cursor(dictionary=True)
     user_session_id = user_id
     all_release = fetch_press_releases(user_session_id)
