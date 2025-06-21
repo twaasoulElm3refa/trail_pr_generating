@@ -14,7 +14,7 @@ port = os.getenv("DB_PORT")
 
 
 @app.get("/")
-async def generate_article(user_id: str):
+async def root():
     connection = get_db_connection()
     '''cursor = connection.cursor(dictionary=True)
     user_session_id = user_id
