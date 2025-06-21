@@ -12,7 +12,7 @@ def check_mysql_connection():
             user=os.getenv("DB_USER"),
             password=os.getenv("DB_PASSWORD"),
             database=os.getenv("DB_NAME"),
-            port=int(os.getenv("DB_PORT", 3306))
+            port=int(os.getenv("DB_PORT"))
         )
 
         if connection.is_connected():
@@ -23,4 +23,4 @@ def check_mysql_connection():
     except Error as e:
         print("❌ Error:", e)
 
-check_mysql_connection()
+#check_mysql_connection()
