@@ -13,7 +13,7 @@ host = os.getenv("DB_HOST")
 port = os.getenv("DB_PORT")
 
 
-@app.get("/{user_id}")
+@app.get("/")
 async def generate_article(user_id: str):
     connection = get_db_connection()
     '''cursor = connection.cursor(dictionary=True)
