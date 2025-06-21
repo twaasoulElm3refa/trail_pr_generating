@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 #import mysql.connector
-from database import get_db_connection, fetch_press_releases 
+from connection_test import check_mysql_connection
 import os
 from dotenv import load_dotenv
 import uvicorn
@@ -16,7 +16,7 @@ port = os.getenv("DB_PORT")
 @app.get("/generate-article/{user_id}")
 async def generate_article(user_id: str):
     connection = get_db_connection()
-    cursor = connection.cursor(dictionary=True)
+    '''cursor = connection.cursor(dictionary=True)
     user_session_id = user_id
     all_release = fetch_press_releases(user_session_id)
     release = all_release[-1]
@@ -26,7 +26,7 @@ async def generate_article(user_id: str):
 
     connection.commit()
     cursor.close()
-    connection.close()
+    connection.close()'''
 
     return {"connection":connection}
 
