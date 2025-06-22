@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-#import mysql.connector
+import mysql.connector
 from connection_test import check_mysql_connection,fetch_press_releases
 import os
 from dotenv import load_dotenv
