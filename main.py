@@ -36,7 +36,7 @@ if __name__ == "__main__":
 '''@app.get("/")
 async def root():
     connection = check_mysql_connection()
-    '''cursor = connection.cursor(dictionary=True)
+    cursor = connection.cursor(dictionary=True)
     user_session_id = user_id
     all_release = fetch_press_releases(user_session_id)
     release = all_release[-1]
@@ -46,7 +46,7 @@ async def root():
 
     connection.commit()
     cursor.close()
-    connection.close()'''
+    connection.close()
 
     return {"connection":"done"}
 
