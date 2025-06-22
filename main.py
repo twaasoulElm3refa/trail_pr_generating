@@ -19,8 +19,10 @@ async def root(user_id: str):
     #cursor = connection.cursor(dictionary=True)
     user_session_id = user_id
     all_release = fetch_press_releases(user_session_id)
+    if not all_release:
+        return {"error": "لا توجد نتائج في all_release"}
     release = all_release[-1]
-
+    
     # Prepare the Arabic prompt
     print(release['about_press'])
 
@@ -33,22 +35,3 @@ async def root(user_id: str):
 if __name__ == "__main__":              
     uvicorn.run(app, host=host, port=port)
 
-'''@app.get("/")
-async def root():
-    connection = check_mysql_connection()
-    cursor = connection.cursor(dictionary=True)
-    user_session_id = user_id
-    all_release = fetch_press_releases(user_session_id)
-    release = all_release[-1]
-
-    # Prepare the Arabic prompt
-    print(release['about_press'])
-
-    connection.commit()
-    cursor.close()
-    connection.close()
-
-    return {"connection":"done"}
-
-if __name__ == "__main__":              
-    uvicorn.run(app, host=host, port=port)'''
