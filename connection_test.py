@@ -17,11 +17,14 @@ def check_mysql_connection():
 
         if connection.is_connected():
             print("✅ Connected!")
+            return connection
         else:
             print("❌ Failed.")
+            return None
 
     except Error as e:
         print("❌ Error:", e)
+        return None
         
 def fetch_press_releases(user_id: str ):
     connection = check_mysql_connection()
