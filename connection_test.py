@@ -40,6 +40,7 @@ def fetch_press_releases(user_id: str ):
 
         # Fetch the first row
         all_user_articles = cursor.fetchall()
+        print(len(all_user_articles ))
 
         return all_user_articles
 
