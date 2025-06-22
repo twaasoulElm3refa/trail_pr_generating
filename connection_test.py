@@ -24,7 +24,7 @@ def check_mysql_connection():
         print("❌ Error:", e)
         
 def fetch_press_releases(user_id: str ):
-    connection = get_db_connection()
+    connection = check_mysql_connection()
     if connection is None:
         print("Failed to establish database connection")
         return []
