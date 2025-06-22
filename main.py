@@ -17,18 +17,21 @@ port = os.getenv("DB_PORT")
 async def root(user_id: str):
     connection =check_mysql_connection()
     #cursor = connection.cursor(dictionary=True)
-    user_session_id = user_id
-    all_release = fetch_press_releases(user_session_id)
-    if not all_release:
-        return {"error": "لا توجد نتائج في all_release"}
-    release = all_release[-1]
+    if connection is None:
+        print("Failed to establish database connection")  # لن تظهر إذا الاتصال ناجح
+    else:
+        user_session_id = user_id
+        all_release = fetch_press_releases(user_session_id)
+        if not all_release:
+            return {"error": "لا توجد نتائج في all_release"}
+        release = all_release[-1]
+        
+        # Prepare the Arabic prompt
+        print(release['about_press'])
     
-    # Prepare the Arabic prompt
-    print(release['about_press'])
-
-    connection.commit()
-    #cursor.close()
-    connection.close()
+        connection.commit()
+        #cursor.close()
+        connection.close()
 
     return {"Press release":release['about_press']}
 
