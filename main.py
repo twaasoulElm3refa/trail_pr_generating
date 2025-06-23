@@ -44,7 +44,12 @@ async def root(user_id: str):
         if not all_release:
             return {"error": "لا توجد نتائج في all_release"}
         release = all_release[-1]
-    
+        user_id = release['user_id'] 
+        organization_name = release['organization_name']
+        article = release['about_press']
+
+        update_press_release(user_id, organization_name, article)
+        
         connection.commit()
         connection.close()
 
