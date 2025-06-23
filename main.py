@@ -48,7 +48,7 @@ async def root(user_id: str):
         connection.commit()
         connection.close()
 
-    return {"All_release":**all_release, "last release": release}
+    return {"All_release":all_release, "last release": release}
 
 if __name__ == "__main__":              
     uvicorn.run(app, host=host, port=port)
