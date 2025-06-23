@@ -14,7 +14,7 @@ host = os.getenv("DB_HOST")
 port = os.getenv("DB_PORT")
 
 
-# ✅ 1. إعداد CORS Middleware (اختياري لكن مهم لو عندك Frontend خارجي)
+'''# ✅ 1. إعداد CORS Middleware (اختياري لكن مهم لو عندك Frontend خارجي)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # ← أو ضع دومينات محددة مثل ["https://yourfrontend.com"]
@@ -29,7 +29,7 @@ async def log_requests(request: Request, call_next):
     print(f"📥 Request: {request.method} {request.url}")
     response = await call_next(request)
     print(f"📤 Response status: {response.status_code}")
-    return response
+    return response'''
 
 
 @app.get("/{user_id}")
