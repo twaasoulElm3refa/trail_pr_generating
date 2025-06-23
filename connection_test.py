@@ -54,4 +54,28 @@ def fetch_press_releases(user_id: str ):
         if connection.is_connected():
             cursor.close()
             connection.close()
+
+def update_press_release(user_id, organization_name, article):
+    connection = check_mysql_connection()
+    if connection is None:
+        return False
+    
+    try:
+        cursor = connection.cursor()
+        query = """
+        INSERT INTO wpl3_articles (user_id, organization_name, article)
+        VALUES (%s, %s, %s)
+        ON DUPLICATE KEY UPDATE full_pr = VALUES(full_pr)
+        """
+        cursor.execute(query, (user_id, organization_name, article))
+        connection.commit()
+        return True
+    except Error as e:
+        print(f"Error updating data: {e}")
+        return False
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
 #check_mysql_connection()
