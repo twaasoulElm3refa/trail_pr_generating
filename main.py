@@ -48,12 +48,12 @@ async def root(user_id: str):
         organization_name = release['organization_name']
         article = release['about_press']
 
-        update_press_release(user_id, organization_name, article)
+        saved_data = update_press_release(user_id, organization_name, article)
         
         connection.commit()
         connection.close()
 
-    return {"All_release":all_release, "last release": release}
+    return {"last release": release , "data_condation": saved_data}
 
 if __name__ == "__main__":              
     uvicorn.run(app, host=host, port=port)
