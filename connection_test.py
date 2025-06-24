@@ -65,7 +65,7 @@ def update_press_release(user_id, organization_name, article):
         query = """
         INSERT INTO wpl3_articles (user_id, organization_name, article)
         VALUES (%s, %s, %s)
-        ON DUPLICATE KEY UPDATE full_pr = VALUES(full_pr)
+        ON DUPLICATE KEY UPDATE article = VALUES(article)
         """
         cursor.execute(query, (user_id, organization_name, article))
         connection.commit()
