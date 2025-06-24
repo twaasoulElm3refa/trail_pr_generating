@@ -48,17 +48,17 @@ def generate_article_based_on_topic(topic, corpus, index):
 
 @app.get("/{user_id}")
 async def root(user_id: str):
- with open('filtered_corpus.json', 'r', encoding='utf-8') as json_file:
-            corpus = json.load(json_file)
-        index = faiss.read_index("my_index.index")
+with open('filtered_corpus.json', 'r', encoding='utf-8') as json_file:
+    corpus = json.load(json_file)
+index = faiss.read_index("my_index.index")
 
-        # Prepare the Arabic prompt
-        topic = f" اكتب بيان عن احداث الحرب الحالية"
-        article = generate_article_based_on_topic(topic, corpus, index)
-        
-        print(article)
+# Prepare the Arabic prompt
+topic = f" اكتب بيان عن احداث الحرب الحالية"
+article = generate_article_based_on_topic(topic, corpus, index)
 
-    return {"article":article }
+print(article)
+
+return {"article":article }
 
 if __name__ == "__main__":              
     uvicorn.run(app, host=host, port=port)
