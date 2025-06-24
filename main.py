@@ -7,6 +7,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from pydantic import BaseModel
 import openai
+import faiss
+import numpy as np
+import json
 from sentence_transformers import SentenceTransformer
 
 
