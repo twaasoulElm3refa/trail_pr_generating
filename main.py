@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 #import mysql.connector
-from connection_test import check_mysql_connection,fetch_press_releases
+from connection_test import check_mysql_connection,fetch_press_releases ,update_press_release
 import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
