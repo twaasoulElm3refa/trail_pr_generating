@@ -2,6 +2,7 @@ from fastapi import FastAPI
 #import mysql.connector
 from connection_test import check_mysql_connection,fetch_press_releases ,update_press_release
 from dotenv import load_dotenv
+import os
 import uvicorn
 import asyncio
 from pydantic import BaseModel
