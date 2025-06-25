@@ -58,7 +58,7 @@ async def root(user_id: str):
     
     print(article)
     
-return {"article":article }
+    return {"article":article }
 
 if __name__ == "__main__":              
     uvicorn.run(app, host=host, port=port)
