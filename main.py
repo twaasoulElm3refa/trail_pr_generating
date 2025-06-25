@@ -29,6 +29,12 @@ def generate_article(topic):
     )
     return response.choices[0].message.content.strip()
 
+@app.post("/")
+async def root():
+    article = "hello"
+    print (article)
+    return {"article":article }
+
 @app.post("/{used_id}")
 async def root(user_id: str):
     # Prepare the Arabic prompt
