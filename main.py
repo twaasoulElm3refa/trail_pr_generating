@@ -7,7 +7,8 @@ import json
 
 app = FastAPI()
 
-model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+#model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+model = SentenceTransformer("paraphrase-multilingual-MiniLM-L6-v2")
 with open('filtered_corpus.json', 'r', encoding='utf-8') as json_file:
     corpus = json.load(json_file)
 index = faiss.read_index("my_index.index")
