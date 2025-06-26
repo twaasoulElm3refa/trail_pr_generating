@@ -49,26 +49,36 @@ async def root(user_id: str):
 
 
 '''
+
 from fastapi import FastAPI
-from sentence_transformers import SentenceTransformer
+#from sentence_transformers import SentenceTransformer
+#from pydantic import BaseModel
 import faiss
 import numpy as np
 import openai
 import json
+import os
 
 app = FastAPI()
 
-#model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+'''#model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
 #model = SentenceTransformer("paraphrase-multilingual-MiniLM-L6-v2")
 #model = SentenceTransformer("sentence-transformers/paraphrase-MiniLM-L6-v2")
 #model = SentenceTransformer("sentence-transformers/paraphrase-MiniLM-L3-v2")  # الأصغر حجماً
-model = SentenceTransformer("my_model")
+model = SentenceTransformer("my_model")'''
 with open('filtered_corpus.json', 'r', encoding='utf-8') as json_file:
     corpus = json.load(json_file)
 index = faiss.read_index("my_index.index")
 
+def get_openai_embedding(text: str):
+    response = openai.embeddings.create(
+        model="text-embedding-ada-002",
+        input=[text]
+    )
+    return np.array(response.data[0].embedding, dtype=np.float32).reshape(1, -1)
+    
 def generate_article(topic):
-    topic_embedding = model.encode([topic])
+    topic_embedding = = get_openai_embedding(topic)
     D, I = index.search(np.array(topic_embedding), 3)
     context = "\n".join([corpus[i]["content"] for i in I[0]])
 
@@ -84,17 +94,18 @@ def generate_article(topic):
     )
     return response.choices[0].message.content.strip()
 
-@app.post("/")
+@app.get("/")
 async def root():
     article = "hello"
     print (article)
     return {"article":article }
 
-@app.post("/{used_id}")
+@app.get("/{used_id}")
 async def root(user_id: str):
     # Prepare the Arabic prompt
     topic = f" اكتب بيان عن احداث الحرب الحالية"
-    article = generate_article_based_on_topic(topic)
+    article = generate_article(topic)
+    #article = generate_article_based_on_topic(topic)
     
     print(article)
     return {"article":article }
