@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 #from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 #import asyncio
-from pydantic import BaseModel
+#from pydantic import BaseModel
 import openai
 #import faiss
 #import numpy as np
@@ -100,7 +100,7 @@ async def root(user_id: str):
         if not all_release:
             return {"error": "لا توجد نتائج في all_release"}
         release = all_release[-1]
-        print("Processing started...")
+      
 
        ''' with open('filtered_corpus.json', 'r', encoding='utf-8') as json_file:
             corpus = json.load(json_file)
@@ -157,9 +157,9 @@ async def root(user_id: str):
         organization_name = release['organization_name']
 
         saved_data = update_press_release(user, organization_name, article)
-        
-        await asyncio.sleep(5)  # simulate long task
-        print("Processing finished.")
+        #print("Processing started...")
+        #await asyncio.sleep(5)  # simulate long task
+        #print("Processing finished.")
         
         connection.commit()
         connection.close()
