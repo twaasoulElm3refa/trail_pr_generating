@@ -10,9 +10,10 @@ app = FastAPI()
 
 load_dotenv()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("openAI_API")
 host = os.getenv("DB_HOST")
 port = os.getenv("DB_PORT")
+
 
 
 def generate_article_based_on_topic(topic,context,lines_number,website):
