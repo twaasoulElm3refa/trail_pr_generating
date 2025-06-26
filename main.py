@@ -35,9 +35,9 @@ def generate_article_based_on_topic(topic,context,lines_number,website):
 
     # Get response from OpenAI
     response  = openai.chat.completions.create(
-      model="gpt-4o-mini",
-      store=True,
-      messages=[{"role": "user", "content": prompt}]
+        model="gpt-4o-mini",
+        store=True,
+        messages=[{"role": "user", "content": prompt}]
         )
     
     return response.choices[0].message.content.strip()
