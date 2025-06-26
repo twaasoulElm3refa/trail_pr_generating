@@ -101,7 +101,7 @@ async def root(user_id: str):
         connection.commit()
         connection.close()
 
-    return {"last release": release , "data_condation": saved_data}
+    return {"article":article}
 
 if __name__ == "__main__":              
     uvicorn.run(app, host=host, port=port)
