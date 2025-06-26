@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+'''from fastapi import FastAPI
 import openai
 import numpy as np
 import json
@@ -48,7 +48,8 @@ async def root(user_id: str):
     return {"article":article }
 
 
-'''from fastapi import FastAPI
+'''
+from fastapi import FastAPI
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
@@ -61,7 +62,7 @@ app = FastAPI()
 #model = SentenceTransformer("paraphrase-multilingual-MiniLM-L6-v2")
 #model = SentenceTransformer("sentence-transformers/paraphrase-MiniLM-L6-v2")
 model = SentenceTransformer("sentence-transformers/paraphrase-MiniLM-L3-v2")  # الأصغر حجماً
-
+model = SentenceTransformer("my_model")
 with open('filtered_corpus.json', 'r', encoding='utf-8') as json_file:
     corpus = json.load(json_file)
 index = faiss.read_index("my_index.index")
@@ -98,7 +99,7 @@ async def root(user_id: str):
     print(article)
     return {"article":article }
 # return {"result": generate_article(data["topic"], data["lines_number"], data["website"])}
-'''
+
 
 
 '''from fastapi import FastAPI
